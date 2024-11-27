@@ -1,4 +1,4 @@
-name: Android CI with fir.im (Debug APK)
+name: Android Debug CI with fir.im
 
 on:
   push:
@@ -38,7 +38,6 @@ jobs:
       # 上传 Debug APK 到 fir.im
       - name: Upload Debug APK to Fir.im
         run: |
-          curl -k -F "file=@app/build/outputs/apk/debug/app-debug.apk" \
+          curl -F "file=@app/build/outputs/apk/debug/app-debug.apk" \
                -F "token=${{ secrets.FIR_TOKEN }}" \
                https://upload.qiniu.com
-
