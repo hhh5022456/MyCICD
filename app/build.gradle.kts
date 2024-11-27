@@ -17,15 +17,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-//    val keystorePath = "C:/Users/84410/Desktop/dense.jks" // 确保路径正确
-//    signingConfigs {
-//        create("release") {
-//            keyAlias = "dense"
-//            keyPassword = "123654"
-//            storeFile = file(keystorePath) // 使用 file() 处理路径
-//            storePassword = "123654"
-//        }
-//    }
+//
 
 
     buildTypes {
@@ -39,6 +31,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // 不设置签名
+            signingConfig = null
         }
     }
     compileOptions {

@@ -1,4 +1,4 @@
-name: Android CI with fir.im
+name: Android CI with fir.im (Debug APK)
 
 on:
   push:
@@ -27,23 +27,17 @@ jobs:
       - name: Make Gradle Wrapper executable
         run: chmod +x ./gradlew
 
-      # 上传签名文件
-      - name: Setup Keystore
-        run: |
-          mkdir -p ~/.android
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ~/.android/keystore.jks
-
-      # 构建带签名的 Release APK
-      - name: Build with Gradle
-        run: ./gradlew assembleRelease --stacktrace
+      # 构建 Debug APK
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --stacktrace
 
       # 调试 APK 文件路径
       - name: Debug APK Path
-        run: ls -l app/build/outputs/apk/release/
+        run: ls -l app/build/outputs/apk/debug/
 
-      # 上传 APK 到 fir.im
-      - name: Upload APK to Fir.im
+      # 上传 Debug APK 到 fir.im
+      - name: Upload Debug APK to Fir.im
         run: |
-          curl -F "file=@app/build/outputs/apk/release/app-release.apk" \
+          curl -F "file=@app/build/outputs/apk/debug/app-debug.apk" \
                -F "token=${{ secrets.FIR_TOKEN }}" \
                https://upload.qiniu.com
