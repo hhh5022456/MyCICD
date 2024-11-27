@@ -16,11 +16,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    val keystorePath = file("F:\\MyCICD\\dense.jks").absolutePath
     signingConfigs {
         create("release") {
             keyAlias = "dense"
             keyPassword = "123654"
-            storeFile = file("F:\\MyCICD\\dense.jks") // 替换为你的 keystore 文件路径
+            storeFile = file(keystorePath) // 替换为你的 keystore 文件路径
             storePassword = "123654"
         }
     }
