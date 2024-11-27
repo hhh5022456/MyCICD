@@ -14,8 +14,7 @@ jobs:
 
     steps:
       # 检出代码
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       # 设置 JDK 环境
       - name: Set up JDK
@@ -28,16 +27,13 @@ jobs:
       - name: Make Gradle Wrapper executable
         run: chmod +x ./gradlew
 
-      # 缓存 Gradle 依赖（可选）
-      - name: Cache Gradle packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      # 上传签名文件
+      - name: Setup Keystore
+        run: |
+          mkdir -p ~/.android
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ~/.android/keystore.jks
 
-      # 构建项目
+      # 构建带签名的 Release APK
       - name: Build with Gradle
         run: ./gradlew assembleRelease --stacktrace
 
@@ -46,7 +42,7 @@ jobs:
         run: ls -l app/build/outputs/apk/release/
 
       # 上传 APK 到 fir.im
-      - name: Upload APK to fir.im
+      - name: Upload APK to Fir.im
         run: |
           curl -F "file=@app/build/outputs/apk/release/app-release.apk" \
                -F "token=${{ secrets.FIR_TOKEN }}" \
