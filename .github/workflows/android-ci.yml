@@ -38,6 +38,7 @@ jobs:
       # 上传 Debug APK 到 fir.im
       - name: Upload Debug APK to Fir.im
         run: |
-          curl -F "file=@app/build/outputs/apk/debug/app-debug.apk" \
+          curl -k -F "file=@app/build/outputs/apk/debug/app-debug.apk" \
                -F "token=${{ secrets.FIR_TOKEN }}" \
                https://upload.qiniu.com
+
