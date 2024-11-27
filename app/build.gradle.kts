@@ -20,7 +20,7 @@ android {
         create("release") {
             keyAlias = "dense"
             keyPassword = "123654"
-            storeFile = file("C:/Users/84410/Desktop/dense.jks") // 替换为你的 keystore 文件路径
+            storeFile = file("F:\\MyCICD\\dense.jks") // 替换为你的 keystore 文件路径
             storePassword = "123654"
         }
     }
