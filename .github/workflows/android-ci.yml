@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       # 确保 Gradle Wrapper 可执行
       - name: Make Gradle Wrapper executable
