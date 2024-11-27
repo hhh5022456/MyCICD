@@ -16,7 +16,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    val keystorePath = file("F:\\MyCICD\\dense.jks").absolutePath
+    val keystorePath = file("F:/MyCICD/dense.jks").absolutePath
     signingConfigs {
         create("release") {
             keyAlias = "dense"
