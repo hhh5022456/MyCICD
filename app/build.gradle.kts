@@ -18,6 +18,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            // 可选配置，例如禁用代码混淆以便调试
+            isMinifyEnabled = false
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
