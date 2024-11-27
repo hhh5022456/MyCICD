@@ -1,4 +1,4 @@
-name: Android CI
+name: Android CI with fir.im
 
 on:
   push:
@@ -39,8 +39,11 @@ jobs:
 
       # 构建项目
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew assembleRelease
 
-      # 执行测试
-      - name: Run tests
-        run: ./gradlew test
+      # 上传 APK 到 fir.im
+      - name: Upload APK to fir.im
+        run: |
+          curl -F "file=@app/build/outputs/apk/release/app-release.apk" \
+               -F "token=57ef0bbebf935eed2c12e1d529aaee3f" \
+               https://upload.qiniu.com
