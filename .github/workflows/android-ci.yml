@@ -39,7 +39,11 @@ jobs:
 
       # 构建项目
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --stacktrace
+
+      # 调试 APK 文件路径
+      - name: Debug APK Path
+        run: ls -l app/build/outputs/apk/release/
 
       # 上传 APK 到 fir.im
       - name: Upload APK to fir.im
