@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+
     namespace = "com.example.mycicd"
     compileSdk = 34
 
@@ -16,7 +17,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    val keystorePath = "F:/MyCICD/dense.jks" // 确保路径正确
+    val keystorePath = "C:/Users/84410/Desktop/dense.jks" // 确保路径正确
     signingConfigs {
         create("release") {
             keyAlias = "dense"
@@ -47,6 +48,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
